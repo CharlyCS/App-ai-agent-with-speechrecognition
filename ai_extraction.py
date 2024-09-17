@@ -5,35 +5,37 @@ import en_core_web_sm
 #nlp = spacy.load('en_core_news_sm')
 nlp = es_core_news_sm.load() # https://spacy.io/models/es
 
-class extraction(text):
-    def __init__(self):
-        self.send_extraction = send_extraction(text)
-        self.mount_extraction = mount_extraction(text)
-        self.name_extraction = name_extraction(text)
-        
+class Extraction:
+    def __init__(self, text):
+        self.text = text
 
-    def send_extraction(texto):
-        doc = nlp(texto.lower())
+    def send_extraction(self):
+        doc = nlp(self.text.lower())
         clave = ['envia', 'mandar', 'pasar', 'transferir', 'remitir', 'despachar']
-
-        '''for token in doc:
-            print(f"Palabra: {token.text}, Lemmatizado: {token.lemma_}")'''
+        
         for token in doc:
             if token.lemma_ in clave:
                 return token.lemma_
-        return "No se encuentra envio", 400
+        return "No se encuentra envío"
 
-    def mount_extraction(texto):
-        patron = r'\b\d+\s*soles\b'
-        result = re.search(patron, texto.lower())
-        return result.group() if result else None
+    def mount_extraction(self):
+        patron = r'\b\d+'
+        #patron = r'\b\d+\s*soles\b'
+        #number = patron.split()[1]
+        result = re.search(patron, self.text.lower())
+        return result.group() if result else "No se encontró monto"
 
-    def name_extraction(texto):
-        doc = nlp(texto)
+    def name_extraction(self):
+        doc = nlp(self.text)
         for entidad in doc.ents:
             if entidad.label_ == 'PER':
                 return entidad.text
-            else:
-                return "No se encontro nombre", 400
+        return "No se encontró nombre"
         
 text = "envia 400 soles a mi causa juan"
+
+extraccion = Extraction(text)
+
+print(extraccion.send_extraction()) 
+print(extraccion.mount_extraction()) 
+print(extraccion.name_extraction()) 
