@@ -27,15 +27,17 @@ class Extraction:
 
     def name_extraction(self):
         doc = nlp(self.text)
-        for entidad in doc.ents:
+        for token in doc:
+            if token.dep_ in ('dobj', 'iobj', 'obj'):
+                return token.text
+        '''for entidad in doc.ents:
+            print(entidad)
             if entidad.label_ == 'PER':
-                return entidad.text
+                print(entidad.label_)
+                return entidad.text'''
         return "No se encontró nombre"
         
-text = "envia 400 soles a mi causa juan"
-
+text = "envia 200 soles a mi causa jose garcia"
+#PATH = "sql_ai_agent/database_clients.csv"
 extraccion = Extraction(text)
-
-print(extraccion.send_extraction()) 
-print(extraccion.mount_extraction()) 
-print(extraccion.name_extraction()) 
+print(extraccion.name_extraction())
