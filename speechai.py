@@ -15,4 +15,3 @@ def transcription():
         except sr.RequestError as e:
             print(f"Error al conectar: {e}")
 
-texto_transcrito = transcription()
