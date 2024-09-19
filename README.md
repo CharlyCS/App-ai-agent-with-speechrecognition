@@ -1,6 +1,6 @@
 # App with an AI agent (Beta Version)
 
-This project is designed to extract and process specific information from text inputs using Natural Language Processing (NLP). The solution includes custom classes for entity extraction, name and action recognition. The project is focused on text processing in Spanish and is integrated with an AI agent to assist with extracting and acting on specific data points, such as names, amounts, and actions.
+This project is designed to extract and process specific information from text inputs using Natural Language Processing (NLP) and voice transcription. The solution includes custom classes for entity extraction, name and action recognition, and now voice-to-text transcription. The project is focused on text processing in Spanish and is integrated with an AI agent to assist with extracting and acting on specific data points, such as names, amounts, and actions.
 
 ## **Features**
 
@@ -10,6 +10,10 @@ This project is designed to extract and process specific information from text i
   
 - **Handling Accented Characters**: 
   - Automatic normalization of characters to remove tildes (e.g., "José García" becomes "Jose Garcia").
+
+- **Voice Transcription**:
+  - Speech recognition using speech_recognition and pyaudio.
+  - Allows users to input text by voice.
 
 - **Data Handling (Beta)**: 
   - The current version uses `pandas` to read data from a CSV file (`database_clients.csv`) for client data manipulation.
